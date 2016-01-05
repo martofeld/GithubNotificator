@@ -1,4 +1,4 @@
-package com.mfeldsztejn.githubnotificator;
+package com.mfeldsztejn.githubnotificator.application;
 
 import android.app.Application;
 
