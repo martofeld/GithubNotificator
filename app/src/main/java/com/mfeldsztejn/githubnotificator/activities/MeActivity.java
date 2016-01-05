@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -54,8 +55,6 @@ public class MeActivity extends AppCompatActivity {
 
     private void initViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(getColor(R.color.black));
-
         name = (TextView) findViewById(R.id.activity_me_name);
         username = (TextView) findViewById(R.id.activity_me_username);
         company = (TextView) findViewById(R.id.activity_me_company);
@@ -76,6 +75,7 @@ public class MeActivity extends AppCompatActivity {
     }
 
     private void loadCommonViews(User user) {
+        toolbar.setTitle(user.getLogin());
         name.setText(user.getName());
         username.setText(user.getLogin());
         company.setText(user.getCompany());
@@ -99,7 +99,7 @@ public class MeActivity extends AppCompatActivity {
                 Toast.makeText(MeActivity.this, "Deberia editar el usuario", Toast.LENGTH_SHORT).show();
             }
         });
-        fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
+        fab.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.ic_menu_edit));
     }
 
     private void configureFabForOther(final User user) {
@@ -111,12 +111,12 @@ public class MeActivity extends AppCompatActivity {
                 MeActivity.this.startActivity(Intent.createChooser(i, "Send mail"));
             }
         });
-        fab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_email));
+        fab.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.ic_dialog_email));
     }
 
     private void getUser(String username) {
         Header header = new Header.Builder()
-                .add("Authorization", "token 0cf7e0b765bbe8fe023aadae2d1bcd24f2f3a50a")
+                .add("Authorization", "token 309cbb7eae9f20c31b1e75a891c93c06d5fa969b")
                 .add("Accept", "application/vnd.github.v3+json")
                 .build();
 
